@@ -53,7 +53,6 @@
 </a>
 <nav class="hidden md:flex items-center gap-8">
 <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
 <a class="text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
 <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
 </nav>
@@ -64,10 +63,10 @@
 <input class="bg-zinc-100 dark:bg-zinc-900 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search collection..." type="text"/>
 </div>
 <div class="flex gap-2">
-<button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors relative">
+<!-- <button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors relative">
 <span class="material-symbols-outlined">shopping_bag</span>
 <span class="absolute top-1 right-1 size-2 bg-primary rounded-full"></span>
-</button>
+</button> -->
 <button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
 <span class="material-symbols-outlined">person</span>
 </button>
