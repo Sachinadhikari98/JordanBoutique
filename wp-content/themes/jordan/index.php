@@ -15,9 +15,6 @@
 <button class="bg-primary text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
                             Shop Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
-<button class="border border-zinc-300 dark:border-zinc-700 font-bold px-8 py-4 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all">
-                            Details
-                        </button>
 </div>
 </div>
 <div class="bg-cover bg-center min-h-[400px] order-1 md:order-2" data-alt="Close up shot of Air Jordan 1 Chicago sneakers on a minimalist background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLJ-K9y4EgHYRGLJmomWdx0l_WnBP1sLazc8v6YC8qlYRONZSMz1TUpfTVjGNjV4_IvHJDIx1nRws05VqLKZW6qmDSMJAOOHG-dB4gZDoKre8eF6ElYPPi51bFEKqLdXys_9aepXrrF9l4abMr57U73f7Fb5T1hgpt7mBlLLSof1IOGefhNdqFoOItkNggfxm3yAyTPM6m4bVxDqM2LY1vi4zJBlp5fkELHIO7xsOespGblBR8iLwT3nyuArmztRfoY4_gR33BhnM");'>
@@ -31,7 +28,7 @@
 <div class="h-1 w-20 bg-primary mt-2"></div>
 </div>
 <a class="text-sm font-bold text-pr imary flex items-center gap-1 hover:underline" href="<?php echo get_permalink( get_page_by_path('categories') ); ?>">
-                All Categories 
+                View all Categories 
 </a>
 </div>
 <!-- Image Grid for Collections -->
@@ -45,7 +42,7 @@
 <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Retros</h3>
 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Built for the culture.</p>
 </div>
-<a class="absolute inset-0 z-10" href="#"></a>
+<a class="absolute inset-0 z-10" href="<?php echo get_permalink( get_page_by_path('retros') ); ?>"></a>
 </div>
 <!-- Lows -->
 <div class="group relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900">
@@ -56,7 +53,7 @@
 <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Lows</h3>
 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Low profile, high impact.</p>
 </div>
-<a class="absolute inset-0 z-10" href="#"></a>
+<a class="absolute inset-0 z-10" href="<?php echo get_permalink( get_page_by_path('lows') ); ?>"></a>
 </div>
 <!-- Mids -->
 <div class="group relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900">
@@ -67,7 +64,7 @@
 <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Mids</h3>
 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">The perfect balance.</p>
 </div>
-<a class="absolute inset-0 z-10" href="#"></a>
+<a class="absolute inset-0 z-10" href="<?php echo get_permalink( get_page_by_path('mids') ); ?>"></a>
 </div>
 </div>
 <!-- CTA Section -->
