@@ -19,11 +19,9 @@
 <ul class="space-y-4 text-sm font-medium">
 <li><a class="hover:text-primary transition-colors" href="#">All Sneakers</a></li>
 <li><a class="hover:text-primary transition-colors" href="#">Latest Drops</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Cleaning Kits</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
 </ul>
 </div>
-<div>
+<!-- <div>
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">Support</h4>
 <ul class="space-y-4 text-sm font-medium">
 <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
@@ -31,7 +29,7 @@
 <li><a class="hover:text-primary transition-colors" href="#">Authentication Policy</a></li>
 <li><a class="hover:text-primary transition-colors" href="#">Sizing Guide</a></li>
 </ul>
-</div>
+</div> -->
 <div>
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">Boutique</h4>
 <ul class="space-y-4 text-sm font-medium">

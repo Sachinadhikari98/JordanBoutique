@@ -30,8 +30,8 @@
 <h2 class="text-3xl font-black uppercase tracking-tighter italic">Featured Collections</h2>
 <div class="h-1 w-20 bg-primary mt-2"></div>
 </div>
-<a class="text-sm font-bold text-primary flex items-center gap-1 hover:underline" href="#">
-                View All Categories <span class="material-symbols-outlined text-xs">open_in_new</span>
+<a class="text-sm font-bold text-pr imary flex items-center gap-1 hover:underline" href="<?php echo get_permalink( get_page_by_path('categories') ); ?>">
+                All Categories 
 </a>
 </div>
 <!-- Image Grid for Collections -->

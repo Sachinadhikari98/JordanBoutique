@@ -45,7 +45,7 @@
 <header class="sticky top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
 <div class="flex items-center gap-10">
-<a class="flex items-center gap-2" href="#">
+<a class="flex items-center gap-2" href="<?php echo home_url(); ?>">
 <div class="size-8 bg-primary rounded flex items-center justify-center text-white">
 <span class="material-symbols-outlined">straighten</span>
 </div>
@@ -57,11 +57,11 @@
 <a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo get_permalink( get_page_by_path('contact') ); ?>">Contact</a>
 </nav>
 </div>
-<div class="flex items-center gap-4">
+<!-- <div class="flex items-center gap-4">
 <div class="relative hidden sm:block">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-sm">search</span>
 <input class="bg-zinc-100 dark:bg-zinc-900 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search collection..." type="text"/>
-</div>
+</div> -->
 <div class="flex gap-2">
 <!-- <button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors relative">
 <span class="material-symbols-outlined">shopping_bag</span>
