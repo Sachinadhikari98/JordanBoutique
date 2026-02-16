@@ -52,9 +52,9 @@
 <h2 class="text-xl font-black tracking-tighter uppercase">Jordan Boutique</h2>
 </a>
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo home_url(); ?>">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo get_permalink( get_page_by_path('about') ); ?>">About</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo get_permalink( get_page_by_path('contact') ); ?>">Contact</a>
 </nav>
 </div>
 <div class="flex items-center gap-4">

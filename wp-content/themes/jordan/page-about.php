@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
@@ -36,8 +36,8 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
-<!-- Top Navigation Bar -->
-<header class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-[#392828] px-4 md:px-20 lg:px-40 py-3">
+ Top Navigation Bar -->
+<!-- <header class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-[#392828] px-4 md:px-20 lg:px-40 py-3">
 <div class="flex items-center justify-between max-w-[1200px] mx-auto whitespace-nowrap">
 <div class="flex items-center gap-8">
 <div class="flex items-center gap-4 text-primary">
@@ -74,7 +74,8 @@
 </div>
 </div>
 </div>
-</header>
+</header> -->
+<?php get_header(); ?>
 <main class="pt-16">
 <!-- Hero Section -->
 <section class="relative h-[80vh] flex flex-col items-center justify-center px-4">
@@ -226,7 +227,7 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-slate-900 text-slate-400 py-12 border-t border-white/5">
+<!-- <footer class="bg-slate-900 text-slate-400 py-12 border-t border-white/5">
 <div class="max-w-[1200px] mx-auto px-4 md:px-20 grid grid-cols-1 md:grid-cols-4 gap-12">
 <div class="col-span-1 md:col-span-2">
 <div class="flex items-center gap-2 text-white mb-6">
@@ -269,4 +270,5 @@
             © 2024 AJ Boutique. Not affiliated with Nike or Jordan Brand. All rights reserved.
         </div>
 </footer>
-</body></html>
+</body></html> -->
+<?php get_footer(); ?>

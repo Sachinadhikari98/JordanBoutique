@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
@@ -42,8 +42,8 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
 <div class="relative flex min-h-screen flex-col overflow-x-hidden">
-<!-- Top Navigation -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-zinc-800 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+ Top Navigation -->
+<!-- <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-zinc-800 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
 <div class="flex items-center gap-4">
 <div class="size-8 text-primary">
 <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,8 @@
 </button>
 </div>
 </div>
-</header>
+</header> --> 
+<?php get_header(); ?>
 <main class="flex-1">
 <!-- Page Heading -->
 <div class="mx-auto max-w-[1200px] px-6 pt-10 pb-6">
