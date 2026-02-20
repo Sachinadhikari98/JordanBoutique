@@ -13,9 +13,10 @@
             <p class="text-white/80 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-2xl mx-auto">
                 How a lifelong obsession with the Jumpman evolved from a bedroom collection to the city's premier sneaker destination.
             </p>
-            <button class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold tracking-wide transition-all transform hover:scale-105">
+            <a href="<?php echo get_permalink(get_page_by_path('categories')); ?>"
+                class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold tracking-wide transition-all transform hover:scale-105 inline-block">
                 VIEW THE COLLECTION
-            </button>
+            </a>
         </div>
     </section>
     <!-- The Legend Intro -->
