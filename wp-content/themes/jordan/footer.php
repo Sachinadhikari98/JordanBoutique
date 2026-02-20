@@ -18,7 +18,6 @@
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">Shop</h4>
 <ul class="space-y-4 text-sm font-medium">
 <li><a class="hover:text-primary transition-colors" href="#">All Sneakers</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Latest Drops</a></li>
 </ul>
 </div>
 <div>
@@ -32,10 +31,6 @@
 </div>
 <div class="max-w-[1200px] mx-auto px-6 mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-900 flex justify-between items-center text-xs text-zinc-500 font-medium uppercase tracking-widest">
 <p>© 2024 Jordan Boutique. All rights reserved.</p>
-<div class="flex gap-6">
-<a href="#">Terms</a>
-<a href="#">Sitemap</a>
-</div>
 </div>
 </footer>
 <!-- Floating WhatsApp Button -->
