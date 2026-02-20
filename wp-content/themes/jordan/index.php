@@ -12,9 +12,10 @@
                     The definitive Jordan 1 'Chicago' Reimagined. A tribute to the icon that changed everything. Limited stock available.
                 </p>
                 <div class="flex gap-4">
-                    <button class="bg-primary text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
+                    <a href="<?php echo get_permalink(get_page_by_path('categories')); ?>"
+                        class="bg-primary text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
                         Shop Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="bg-cover bg-center min-h-[400px] order-1 md:order-2" data-alt="Close up shot of Air Jordan 1 Chicago sneakers on a minimalist background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLJ-K9y4EgHYRGLJmomWdx0l_WnBP1sLazc8v6YC8qlYRONZSMz1TUpfTVjGNjV4_IvHJDIx1nRws05VqLKZW6qmDSMJAOOHG-dB4gZDoKre8eF6ElYPPi51bFEKqLdXys_9aepXrrF9l4abMr57U73f7Fb5T1hgpt7mBlLLSof1IOGefhNdqFoOItkNggfxm3yAyTPM6m4bVxDqM2LY1vi4zJBlp5fkELHIO7xsOespGblBR8iLwT3nyuArmztRfoY4_gR33BhnM");'>
