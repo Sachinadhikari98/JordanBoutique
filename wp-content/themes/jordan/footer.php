@@ -33,10 +33,9 @@
 <div>
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">Boutique</h4>
 <ul class="space-y-4 text-sm font-medium">
-<li><a class="hover:text-primary transition-colors" href="#">Our Story</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Store Locations</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="<?php echo get_permalink(get_page_by_path('about')); ?>">Our Story</a></li>
+<li><a class="hover:text-primary transition-colors" href="<?php echo get_permalink(get_page_by_path('locations')); ?>">Store Locations</a></li>
+<li><a class="hover:text-primary transition-colors" href="<?php echo get_permalink(get_page_by_path('privacy-policy')); ?>">Privacy Policy</a></li>
 </ul>
 </div>
 </div>
