@@ -8,11 +8,11 @@
 <h2 class="text-lg font-black tracking-tighter uppercase italic">Jordan Boutique</h2>
 </div>
 <p class="text-zinc-500 text-sm leading-relaxed mb-6">Curating the world's most sought-after silhouettes for the modern collector.</p>
-<div class="flex gap-4">
+<!-- <div class="flex gap-4">
 <a class="text-zinc-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
 <a class="text-zinc-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
 <a class="text-zinc-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
-</div>
+</div> -->
 </div>
 <div>
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">Shop</h4>
