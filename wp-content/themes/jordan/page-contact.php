@@ -54,11 +54,11 @@
                         <span>9am - 5pm</span>
                     </li>
                     <li class="flex justify-between">
-                        <span>Saturday</span>
+                        <span>Sunday</span>
                         <span>10am - 3pm</span>
                     </li>
                     <li class="flex justify-between">
-                        <span>Sunday</span>
+                        <span>Saturday</span>
                         <span>Closed</span>
                     </li>
                 </ul>
