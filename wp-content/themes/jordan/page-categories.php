@@ -30,7 +30,7 @@
     <!-- Content -->
     <div class="absolute bottom-0 left-0 p-8 w-full z-10">
         <h3 class="text-4xl font-bold tracking-tighter mb-2 italic uppercase">
-            Retros
+            Retro(High-top)
         </h3>
         <p class="text-gray-300 mb-6 font-light leading-relaxed">
             The Classics that Defined an Era. Iconic silhouettes from the golden age of basketball.
@@ -56,7 +56,7 @@
 
     <div class="absolute bottom-0 left-0 p-8 w-full z-10">
         <h3 class="text-4xl font-bold tracking-tighter mb-2 italic uppercase">
-            Lows
+            Retro Low
         </h3>
         <p class="text-gray-300 mb-6 font-light leading-relaxed">
             Versatility Meets Iconography. Effortless style for everyday street fashion.
@@ -82,7 +82,7 @@
 
     <div class="absolute bottom-0 left-0 p-8 w-full z-10">
         <h3 class="text-4xl font-bold tracking-tighter mb-2 italic uppercase">
-            Mids
+            Mid
         </h3>
         <p class="text-gray-300 mb-6 font-light leading-relaxed">
             Bold Style for the Streets. The perfect balance of comfort and heritage design.
