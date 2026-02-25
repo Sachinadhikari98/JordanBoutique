@@ -40,7 +40,7 @@
             </div>
             <div class="absolute bottom-0 left-0 p-8">
                 <p class="text-primary font-bold text-xs uppercase mb-1">The Classics</p>
-                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Retros</h3>
+                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Retro(High-top)</h3>
                 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Built for the culture.</p>
             </div>
             <a class="absolute inset-0 z-10" href="<?php echo get_permalink(get_page_by_path('retros')); ?>"></a>
@@ -51,7 +51,7 @@
             </div>
             <div class="absolute bottom-0 left-0 p-8">
                 <p class="text-primary font-bold text-xs uppercase mb-1">Street Ready</p>
-                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Lows</h3>
+                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Retro Low</h3>
                 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Low profile, high impact.</p>
             </div>
             <a class="absolute inset-0 z-10" href="<?php echo get_permalink(get_page_by_path('lows')); ?>"></a>
@@ -62,7 +62,7 @@
             </div>
             <div class="absolute bottom-0 left-0 p-8">
                 <p class="text-primary font-bold text-xs uppercase mb-1">Everyday Icon</p>
-                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Mids</h3>
+                <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Mid</h3>
                 <p class="text-zinc-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">The perfect balance.</p>
             </div>
             <a class="absolute inset-0 z-10" href="<?php echo get_permalink(get_page_by_path('mids')); ?>"></a>
