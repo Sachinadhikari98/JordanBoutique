@@ -46,7 +46,7 @@
             <div class="p-5">
                 <div class="flex justify-between items-start mb-1">
                     <h3 class="font-bold text-lg group-hover:text-primary transition-colors"><?php echo esc_html($name); ?></h3>
-                    <span class="font-black text-primary">$<?php echo esc_html($price); ?></span>
+                    <span class="font-black text-primary">Rs <?php echo esc_html($price); ?></span>
                 </div>
             </div>
         </div>
