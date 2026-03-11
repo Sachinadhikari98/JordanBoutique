@@ -8,3 +8,14 @@ function jordan_theme_setup() {
 }
 
 add_action('after_setup_theme', 'jordan_theme_setup');
+function theme_register_menus() {
+
+    register_nav_menus(array(
+        'primary-menu' => 'Primary Header Menu',
+        'footer-menu'  => 'Footer Menu'
+    ));
+
+}
+
+add_action('after_setup_theme', 'theme_register_menus');
+
