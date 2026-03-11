@@ -56,10 +56,17 @@
                     <h2 class="text-xl font-black tracking-tighter uppercase">Jordan Boutique</h2>
                 </a>
                 <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo home_url(); ?>">Home</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo get_permalink(get_page_by_path('about')); ?>">About</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="<?php echo get_permalink(get_page_by_path('contact')); ?>">Contact</a>
+
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'primary-menu',
+                        'container' => false,
+                        'menu_class' => 'flex items-center gap-8 text-sm font-medium'
+                    ));
+                    ?>
+
                 </nav>
+
             </div>
             <!-- <div class="flex items-center gap-4">
 <div class="relative hidden sm:block">
