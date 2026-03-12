@@ -14,7 +14,7 @@
                 <div class="flex gap-4">
                     <a href="<?php echo get_permalink(get_page_by_path('categories')); ?>"
                         class="bg-primary text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
-                        Shop Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        Shop Now 
                     </a>
                 </div>
             </div>
