@@ -18,7 +18,7 @@
 </div>
 
 <p class="text-zinc-500 text-sm leading-relaxed mb-6">
-Curating the world's most sought-after silhouettes for the modern collector.
+<?php echo esc_html( get_theme_mod('footer_tagline', "Curating the world's most sought-after silhouettes for the modern collector.") ); ?>
 </p>
 
 </div>
@@ -75,7 +75,7 @@ wp_nav_menu(array(
 
 <!-- WHATSAPP BUTTON -->
 
-<a class="fixed bottom-8 right-8 z-50 group" href="https://wa.me/" target="_blank">
+<a class="fixed bottom-8 right-8 z-50 group" href="https://wa.me/<?php echo esc_attr( get_theme_mod('footer_whatsapp', '') ); ?>" target="_blank">
 
 <div class="absolute -top-12 right-0 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-xs font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
 Chat with an expert

@@ -10,8 +10,8 @@
                 <span class="w-1 h-1 bg-white/20 rounded-full"></span>
                 <span>Exclusive</span>
             </div>
-            <h2 class="text-4xl md:text-6xl font-black tracking-tight uppercase italic">The Retro Collection</h2>
-            <p class="text-white/60 max-w-2xl text-lg">Explore our curated selection of high-end Jordan Retros.</p>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight uppercase italic"><?php echo esc_html( get_theme_mod('retros_hero_title', 'The Retro Collection') ); ?></h2>
+            <p class="text-white/60 max-w-2xl text-lg"><?php echo esc_html( get_theme_mod('retros_hero_subtitle', 'Explore our curated selection of high-end Jordan Retros.') ); ?></p>
         </div>
     </section>
 
@@ -39,9 +39,6 @@
         <div class="group relative bg-white/5 rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300">
             <div class="relative aspect-square overflow-hidden bg-[#1a1a1a]">
                 <img class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>"/>
-                <!-- <button class="absolute bottom-4 right-4 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white text-black p-3 rounded-full flex items-center justify-center shadow-2xl">
-                    <span class="material-symbols-outlined">add_shopping_cart</span>
-                </button> -->
             </div>
             <div class="p-5">
                 <div class="flex justify-between items-start mb-1">

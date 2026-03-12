@@ -27,7 +27,7 @@
 
 <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
 style="background-image: linear-gradient(to top, rgba(18,8,8,0.9), rgba(18,8,8,0)),
-url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNoUWE0l341YpDI_7URp-G3AQeqwV5KyZDADX-1y4_zIEEQpWGOIQiosS1ZE4M_LKTPJjS9GKNSfI6S-uhAteNw1wViSKE-kFukOznOW1VQhj8OE9ULVCQzVdl58b9gIIbSvrl1ZnxW1fFgPhiisa93TS6G4bapOn_BHMHjuRJmQkU15xaKWH1BSwo2p4dZxrqgMOwOKK-QN0NiaUbhbGmR5lFzOIYW38rrNViJK_t95-NnDuBFln7HDTON-Q5yiprwIQw2RCar9s');">
+url('<?php echo esc_url( get_theme_mod('categories_retros_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBNoUWE0l341YpDI_7URp-G3AQeqwV5KyZDADX-1y4_zIEEQpWGOIQiosS1ZE4M_LKTPJjS9GKNSfI6S-uhAteNw1wViSKE-kFukOznOW1VQhj8OE9ULVCQzVdl58b9gIIbSvrl1ZnxW1fFgPhiisa93TS6G4bapOn_BHMHjuRJmQkU15xaKWH1BSwo2p4dZxrqgMOwOKK-QN0NiaUbhbGmR5lFzOIYW38rrNViJK_t95-NnDuBFln7HDTON-Q5yiprwIQw2RCar9s') ); ?>');">
 </div>
 
 <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition"></div>
@@ -35,11 +35,11 @@ url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNoUWE0l341YpDI_7URp-G3
 <div class="absolute bottom-0 left-0 p-8 w-full">
 
 <h3 class="text-4xl font-bold italic uppercase text-white mb-2">
-Retros
+<?php echo esc_html( get_theme_mod('categories_retros_title', 'Retros') ); ?>
 </h3>
 
 <p class="text-gray-300 mb-4">
-Iconic silhouettes from the golden era.
+<?php echo esc_html( get_theme_mod('categories_retros_desc', 'Iconic silhouettes from the golden era.') ); ?>
 </p>
 
 <span class="bg-primary text-white px-6 py-3 rounded-lg font-bold">
@@ -61,7 +61,7 @@ Shop Now →
 
 <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
 style="background-image: linear-gradient(to top, rgba(18,8,8,0.9), rgba(18,8,8,0)),
-url('https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleLOWIMAGE');">
+url('<?php echo esc_url( get_theme_mod('categories_lows_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleLOWIMAGE') ); ?>');">
 </div>
 
 <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition"></div>
@@ -69,11 +69,11 @@ url('https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleLOWIMAGE');">
 <div class="absolute bottom-0 left-0 p-8 w-full">
 
 <h3 class="text-4xl font-bold italic uppercase text-white mb-2">
-Lows
+<?php echo esc_html( get_theme_mod('categories_lows_title', 'Lows') ); ?>
 </h3>
 
 <p class="text-gray-300 mb-4">
-Modern low profile classics.
+<?php echo esc_html( get_theme_mod('categories_lows_desc', 'Modern low profile classics.') ); ?>
 </p>
 
 <span class="bg-primary text-white px-6 py-3 rounded-lg font-bold">
@@ -95,7 +95,7 @@ Shop Now →
 
 <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
 style="background-image: linear-gradient(to top, rgba(18,8,8,0.9), rgba(18,8,8,0)),
-url('https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleMIDIMAGE');">
+url('<?php echo esc_url( get_theme_mod('categories_mids_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleMIDIMAGE') ); ?>');">
 </div>
 
 <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition"></div>
@@ -103,11 +103,11 @@ url('https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleMIDIMAGE');">
 <div class="absolute bottom-0 left-0 p-8 w-full">
 
 <h3 class="text-4xl font-bold italic uppercase text-white mb-2">
-Mids
+<?php echo esc_html( get_theme_mod('categories_mids_title', 'Mids') ); ?>
 </h3>
 
 <p class="text-gray-300 mb-4">
-Perfect balance between high and low.
+<?php echo esc_html( get_theme_mod('categories_mids_desc', 'Perfect balance between high and low.') ); ?>
 </p>
 
 <span class="bg-primary text-white px-6 py-3 rounded-lg font-bold">

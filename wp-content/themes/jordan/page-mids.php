@@ -10,8 +10,8 @@
                 <span class="w-1 h-1 bg-white/20 rounded-full"></span>
                 <span>Exclusive</span>
             </div>
-            <h2 class="text-4xl md:text-6xl font-black tracking-tight uppercase italic">The Mid Collection</h2>
-            <p class="text-white/60 max-w-2xl text-lg">Explore our curated selection of Jordan Mids.</p>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight uppercase italic"><?php echo esc_html( get_theme_mod('mids_hero_title', 'The Mid Collection') ); ?></h2>
+            <p class="text-white/60 max-w-2xl text-lg"><?php echo esc_html( get_theme_mod('mids_hero_subtitle', 'Explore our curated selection of Jordan Mids.') ); ?></p>
         </div>
     </section>
 

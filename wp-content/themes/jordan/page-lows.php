@@ -7,22 +7,23 @@
 <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/60 to-transparent z-10"></div>
 
 <img class="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 transition-all duration-700"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk3aV9-2UJfBz_-c9xyKLUf9_9mwRfgtvY-_bLe8ltRNAm-zrDW5hXfeejbZ4u95XwYP_2VwlHlAHF2k4vsqJNdnSKD7z70jHBM1689qStymHHpYTRchIN-yMxu9N1g3LFoX1n3Lf8Ill6vS0RKBiknRPErd07LhGVkvT6JbMXppR0mxMZtcCM-Phy3q8uVebIXmclCTcrE3fADyA54bQ4yJRdYUI8ff1Ob8WhtyEmzr6IiLyBIzRfLsJvIK0BAGaTWGEfSygaP1c"/>
+src="<?php echo esc_url( get_theme_mod('lows_hero_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBk3aV9-2UJfBz_-c9xyKLUf9_9mwRfgtvY-_bLe8ltRNAm-zrDW5hXfeejbZ4u95XwYP_2VwlHlAHF2k4vsqJNdnSKD7z70jHBM1689qStymHHpYTRchIN-yMxu9N1g3LFoX1n3Lf8Ill6vS0RKBiknRPErd07LhGVkvT6JbMXppR0mxMZtcCM-Phy3q8uVebIXmclCTcrE3fADyA54bQ4yJRdYUI8ff1Ob8WhtyEmzr6IiLyBIzRfLsJvIK0BAGaTWGEfSygaP1c') ); ?>"
+alt="<?php echo esc_attr( get_theme_mod('lows_hero_title', 'Jordan Lows') ); ?>">
 
 <div class="relative z-20 h-full flex flex-col justify-center px-8 sm:px-12">
 
 <nav class="flex items-center gap-2 mb-4 text-xs font-semibold tracking-widest uppercase text-primary">
 <a href="<?php echo site_url(); ?>">Shop</a>
 <span>/</span>
-<span class="text-white">Jordan Lows</span>
+<span class="text-white"><?php echo esc_html( get_theme_mod('lows_hero_title', 'Jordan Lows') ); ?></span>
 </nav>
 
 <h1 class="text-4xl sm:text-6xl font-black italic uppercase tracking-tighter leading-none mb-4">
-Jordan Lows <br><span class="text-primary">Collection</span>
+<?php echo esc_html( get_theme_mod('lows_hero_title', 'Jordan Lows') ); ?> <br><span class="text-primary">Collection</span>
 </h1>
 
 <p class="max-w-md text-slate-400 text-sm sm:text-base">
-Experience the pinnacle of street style. Curated selection of iconic Jordan 1 Lows.
+<?php echo esc_html( get_theme_mod('lows_hero_subtitle', 'Experience the pinnacle of street style. Curated selection of iconic Jordan 1 Lows.') ); ?>
 </p>
 
 </div>
@@ -41,12 +42,6 @@ Experience the pinnacle of street style. Curated selection of iconic Jordan 1 Lo
 </p>
 
 <div class="flex items-center gap-2">
-<!-- <span class="text-xs uppercase font-bold opacity-60">Sort By:</span> -->
-<!-- <select class="bg-transparent border-none text-sm font-bold text-primary">
-<option>Newest</option>
-<option>Price Low</option>
-<option>Price High</option>
-</select> -->
 </div>
 </div>
 
@@ -105,10 +100,6 @@ Jordan Low Collection
 <span class="text-xl font-black text-primary">
 Rs <?php echo esc_html($price); ?>
 </span>
-
-<button class="bg-primary p-2 rounded-lg text-white hover:scale-110 transition-transform">
-<span class="material-symbols-outlined">add_shopping_cart</span>
-</button>
 
 </div>
 
