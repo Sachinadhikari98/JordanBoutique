@@ -26,20 +26,37 @@ Curating the world's most sought-after silhouettes for the modern collector.
 <!-- FOOTER MENU -->
 <div>
 
+<div>
+
 <h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">
-Menu
+Shop
 </h4>
 
 <?php
 wp_nav_menu(array(
-'theme_location' => 'footer-menu',
+'theme_location' => 'footer-shop',
 'container' => false,
-'menu_class' => 'space-y-4 text-sm font-medium',
-'fallback_cb' => false
+'menu_class' => 'space-y-4 text-sm font-medium'
 ));
 ?>
 
 </div>
+<div>
+
+<h4 class="font-bold uppercase text-xs tracking-widest mb-6 text-zinc-400">
+Boutique
+</h4>
+
+<?php
+wp_nav_menu(array(
+'theme_location' => 'footer-boutique',
+'container' => false,
+'menu_class' => 'space-y-4 text-sm font-medium'
+));
+?>
+
+</div>
+
 
 </div>
 
