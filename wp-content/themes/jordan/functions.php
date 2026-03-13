@@ -796,4 +796,24 @@ function jordan_customize_register( $wp_customize ) {
 
 }
 
-add_action( 'customize_register', 'jordan_customize_register' );
+
+// ============================================================
+// AUTH: Custom Login Redirects
+// ============================================================
+
+function jordan_login_failed() {
+    $login_page  = home_url( '/login/' );
+    wp_redirect( $login_page . '?login=failed' );
+    exit;
+}
+add_action( 'wp_login_failed', 'jordan_login_failed' );
+
+function jordan_verify_user_pass( $user, $username, $password ) {
+    $login_page  = home_url( '/login/' );
+    if( $username == "" || $password == "" ) {
+        wp_redirect( $login_page . "?login=failed" );
+        exit;
+    }
+}
+add_filter( 'authenticate', 'jordan_verify_user_pass', 1, 3);
+
