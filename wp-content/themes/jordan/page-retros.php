@@ -39,6 +39,9 @@
         <div class="group relative bg-white/5 rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300">
             <div class="relative aspect-square overflow-hidden bg-[#1a1a1a]">
                 <img class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>"/>
+                <button onclick="window.jordanAddToCart(<?php the_ID(); ?>)" class="absolute bottom-4 right-4 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white text-black p-3 rounded-full flex items-center justify-center shadow-2xl hover:bg-primary hover:text-white active:scale-95">
+                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
             </div>
             <div class="p-5">
                 <div class="flex justify-between items-start mb-1">

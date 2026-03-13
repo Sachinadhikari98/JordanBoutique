@@ -97,9 +97,14 @@ Jordan Low Collection
 
 <div class="flex items-center justify-between">
 
-<span class="text-xl font-black text-primary">
-Rs <?php echo esc_html($price); ?>
-</span>
+<div class="flex items-center justify-between mt-auto">
+    <span class="text-xl font-black text-primary">
+        Rs <?php echo esc_html($price); ?>
+    </span>
+    <button onclick="window.jordanAddToCart(<?php the_ID(); ?>)" class="bg-primary text-white p-2.5 rounded-lg hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center shadow-lg shadow-red-500/10">
+        <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+    </button>
+</div>
 
 </div>
 
