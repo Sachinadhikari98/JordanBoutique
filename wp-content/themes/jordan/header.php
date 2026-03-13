@@ -43,17 +43,19 @@
 <body <?php body_class('bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen'); ?>>
 
 <!-- HEADER -->
-<header class="sticky top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<header class="jordan-header sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl">
+
+<!-- Shimmer accent line -->
+<div class="header-shimmer"></div>
 
 <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
 
 <!-- LOGO -->
 <div class="flex items-center gap-10">
 
-<a class="flex items-center gap-2" href="<?php echo home_url(); ?>">
+<a class="jordan-logo flex items-center gap-2.5" href="<?php echo home_url(); ?>">
 
-<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
-<span class="material-symbols-outlined">straighten</span>
+<div class="logo-icon size-9 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-red-500/20">
 </div>
 
 <h2 class="text-xl font-black tracking-tighter uppercase">
@@ -62,8 +64,8 @@
 
 </a>
 
-<!-- DYNAMIC MENU -->
-<nav class="hidden md:flex items-center">
+<!-- DESKTOP NAV -->
+<nav class="jordan-nav hidden md:flex items-center">
 
 <?php
 wp_nav_menu(array(
@@ -76,18 +78,73 @@ wp_nav_menu(array(
 
 </nav>
 
-
 </div>
 
-<!-- USER ICON -->
-<div class="flex gap-2">
+<!-- RIGHT SIDE ICONS -->
+<div class="flex items-center gap-1">
 
-<button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-<span class="material-symbols-outlined">person</span>
+<!-- User / Login icon -->
+<?php if ( is_user_logged_in() ) : ?>
+<a href="<?php echo wp_logout_url( home_url() ); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="Logout">
+    <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">logout</span>
+    <span class="hidden sm:inline text-xs font-semibold group-hover:text-primary transition-colors">Logout</span>
+</a>
+<?php else : ?>
+<a href="<?php echo get_permalink( get_page_by_path('login') ); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="Login">
+    <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">person</span>
+    <span class="hidden sm:inline text-xs font-semibold group-hover:text-primary transition-colors">Login</span>
+</a>
+<?php endif; ?>
+
+<!-- Mobile hamburger -->
+<button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors ml-1" aria-label="Toggle menu">
+    <div class="flex flex-col gap-1.5 w-5">
+        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+    </div>
 </button>
 
 </div>
 
 </div>
 
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="mobile-menu md:hidden px-6 pb-4 border-t border-zinc-200/50 dark:border-zinc-800/50">
+<?php
+wp_nav_menu(array(
+'theme_location' => 'primary-menu',
+'container' => false,
+'menu_class' => 'pt-2 text-sm font-medium',
+'fallback_cb' => false
+));
+?>
+
+<?php if ( ! is_user_logged_in() ) : ?>
+<div class="pt-3 mt-1 border-t border-zinc-200/50 dark:border-zinc-800/50">
+    <a href="<?php echo get_permalink( get_page_by_path('login') ); ?>" class="flex items-center gap-2 py-3 text-sm font-semibold text-primary">
+        <span class="material-symbols-outlined text-lg">person</span>
+        Login / Register
+    </a>
+</div>
+<?php endif; ?>
+</div>
+
+<!-- Bottom border with gradient -->
+<div class="h-px bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent"></div>
+
 </header>
+
+<!-- Mobile menu toggle script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+        toggle.addEventListener('click', function() {
+            menu.classList.toggle('is-open');
+            toggle.querySelector('.flex').classList.toggle('hamburger-active');
+        });
+    }
+});
+</script>

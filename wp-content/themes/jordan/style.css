@@ -2,5 +2,250 @@
 Author: Sachin Adhikari
 Description: A theme for new website
 Version: 1.0 
-Tags: education, wordpress
+Tags: education, wordpress
 */
+
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+/* Header slide-down entrance */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Shimmer accent line */
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Footer scroll-reveal */
+@keyframes fadeInUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* WhatsApp pulse ring */
+@keyframes pulseRing {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    70%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Gentle float for WhatsApp */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* Back-to-top bounce */
+@keyframes bounceUp {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+/* Mobile menu slide */
+@keyframes menuSlideDown {
+    from { max-height: 0; opacity: 0; }
+    to   { max-height: 400px; opacity: 1; }
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+
+.jordan-header {
+    animation: slideDown 0.6s ease-out both;
+}
+
+/* Shimmer top accent */
+.header-shimmer {
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #f20d0d 25%,
+        #ff4444 50%,
+        #f20d0d 75%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Nav link animated underline */
+.jordan-nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+.jordan-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #f20d0d;
+    transition: width 0.35s ease;
+}
+.jordan-nav a:hover::after {
+    width: 100%;
+}
+.jordan-nav a:hover {
+    color: #f20d0d !important;
+}
+
+/* Nav list items strip default WP styles */
+.jordan-nav li {
+    list-style: none;
+}
+
+/* Logo hover */
+.jordan-logo:hover .logo-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 0 20px rgba(242,13,13,0.4);
+}
+.logo-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.mobile-menu.is-open {
+    max-height: 400px;
+    opacity: 1;
+}
+.mobile-menu li {
+    list-style: none;
+}
+.mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(113,113,122,0.15);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.mobile-menu a:hover {
+    color: #f20d0d;
+    padding-left: 8px;
+}
+
+/* Hamburger animation */
+.hamburger-bar {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger-active .hamburger-bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-active .hamburger-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+
+/* Footer link hover */
+.jordan-footer-links a {
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+.jordan-footer-links a:hover {
+    color: #f20d0d !important;
+    transform: translateX(4px);
+}
+
+.jordan-footer-links li {
+    list-style: none;
+}
+
+/* Scroll-reveal */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Social icon hover */
+.social-icon {
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Back to top */
+.back-to-top {
+    animation: bounceUp 2s ease-in-out infinite;
+    transition: color 0.3s ease;
+}
+.back-to-top:hover {
+    color: #f20d0d !important;
+}
+
+/* ============================================
+   WHATSAPP BUTTON
+   ============================================ */
+
+.whatsapp-btn {
+    animation: float 3s ease-in-out infinite;
+}
+.whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulseRing 2s ease-out infinite;
+    z-index: -1;
+}
+
+/* ============================================
+   LOGIN / REGISTER PAGE STYLES
+   ============================================ */
+
+.auth-input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.auth-input:focus {
+    border-color: #f20d0d !important;
+    box-shadow: 0 0 0 3px rgba(242,13,13,0.15);
+    outline: none;
+}
+.auth-btn {
+    transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+}
+.auth-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(242,13,13,0.3);
+}
+.auth-btn:active {
+    transform: translateY(0);
+}
+
+/* Auth card entrance */
+@keyframes authFadeIn {
+    from { transform: translateY(20px) scale(0.98); opacity: 0; }
+    to   { transform: translateY(0) scale(1);       opacity: 1; }
+}
+.auth-card {
+    animation: authFadeIn 0.5s ease-out both;
+}
