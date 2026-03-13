@@ -7,9 +7,7 @@
 
 <div class="flex items-center gap-2 mb-6">
 
-<div class="size-6 bg-primary rounded flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-xs">straighten</span>
-</div>
+
 
 <h2 class="text-lg font-black tracking-tighter uppercase italic">
 <?php bloginfo('name'); ?>

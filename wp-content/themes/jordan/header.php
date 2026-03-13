@@ -91,7 +91,6 @@ wp_nav_menu(array(
 </a>
 <?php else : ?>
 <a href="<?php echo get_permalink( get_page_by_path('login') ); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="Login">
-    <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">person</span>
     <span class="hidden sm:inline text-xs font-semibold group-hover:text-primary transition-colors">Login</span>
 </a>
 <?php endif; ?>
