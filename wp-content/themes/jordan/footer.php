@@ -80,7 +80,6 @@
         
         <!-- Back to top -->
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="back-to-top flex items-center gap-2 group text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-primary transition-colors">
-            <span class="material-symbols-outlined text-base">expand_less</span>
             Back to top
         </button>
 
