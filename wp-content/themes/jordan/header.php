@@ -48,73 +48,70 @@
 <!-- Shimmer accent line -->
 <div class="header-shimmer"></div>
 
-<div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="max-w-[1400px] mx-auto px-6 h-20 grid grid-cols-2 md:grid-cols-3 items-center">
 
-<!-- LOGO -->
-<div class="flex items-center gap-10">
-
+<!-- LEFT: LOGO -->
+<div class="flex items-center justify-start">
 <a class="jordan-logo flex items-center gap-2.5" href="<?php echo home_url(); ?>">
-
 <div class="logo-icon size-9 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-red-500/20">
 </div>
-
-<h2 class="text-xl font-black tracking-tighter uppercase">
+<h2 class="text-xl font-black tracking-tighter uppercase whitespace-nowrap">
 <?php bloginfo('name'); ?>
 </h2>
-
 </a>
+</div>
 
-<!-- DESKTOP NAV -->
-<nav class="jordan-nav hidden md:flex items-center">
-
+<!-- CENTER: NAVIGATION -->
+<nav class="jordan-nav hidden md:flex items-center justify-center">
 <?php
 wp_nav_menu(array(
 'theme_location' => 'primary-menu',
 'container' => false,
-'menu_class' => 'flex items-center gap-8 text-sm font-medium',
-'fallback_cb' => false
+'menu_class' => 'flex items-center gap-1 text-sm font-bold uppercase tracking-widest',
+'fallback_cb' => false,
+'link_before' => '<span class="px-4 py-2 rounded-full transition-all duration-300 hover:scale-110 flex items-center justify-center">',
+'link_after' => '</span>'
 ));
 ?>
-
 </nav>
 
-</div>
-
-<!-- RIGHT SIDE ICONS -->
-<div class="flex items-center gap-1">
-
+<!-- RIGHT: AUTH BUTTONS -->
+<div class="flex items-center justify-end gap-3">
 <?php 
 // Smart URL retrieval for Auth
 $login_page_obj = get_page_by_path('login');
 $auth_url = $login_page_obj ? get_permalink($login_page_obj) : wp_login_url();
+
+$register_page_obj = get_page_by_path('register');
+$register_url = $register_page_obj ? get_permalink($register_page_obj) : wp_registration_url();
+
 $profile_page_obj = get_page_by_path('profile');
 $profile_url = $profile_page_obj ? get_permalink($profile_page_obj) : admin_url('profile.php');
 ?>
 
-<!-- User / Login / Profile -->
-<div class="flex items-center gap-2">
-
+<div class="hidden sm:flex items-center gap-2">
 <?php if ( is_user_logged_in() ) : ?>
     <a href="<?php echo esc_url($profile_url); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="My Profile">
         <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">account_circle</span>
-        <span class="hidden sm:inline text-xs font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
+        <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
     </a>
     <a href="<?php echo wp_logout_url( home_url() ); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="Logout">
         <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">logout</span>
-        <span class="hidden sm:inline text-xs font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Logout</span>
+        <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Logout</span>
     </a>
 <?php else : ?>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
         <a href="<?php echo esc_url($auth_url); ?>" 
-           class="text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors">
+           class="bg-primary text-white text-[10px] sm:text-xs font-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-red-700 transition-all uppercase italic tracking-wider shadow-lg shadow-red-500/20 active:scale-95">
            Login
         </a>
-        <a href="<?php echo esc_url( home_url('/register') ); ?>" 
+        <a href="<?php echo esc_url($register_url); ?>" 
            class="bg-primary text-white text-[10px] sm:text-xs font-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-red-700 transition-all uppercase italic tracking-wider shadow-lg shadow-red-500/20 active:scale-95">
            Register
         </a>
     </div>
 <?php endif; ?>
+</div>
 
 <!-- Mobile hamburger -->
 <button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors ml-1" aria-label="Toggle menu">
@@ -124,9 +121,6 @@ $profile_url = $profile_page_obj ? get_permalink($profile_page_obj) : admin_url(
         <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
     </div>
 </button>
-
-</div>
-
 </div>
 
 </div>
@@ -153,13 +147,12 @@ wp_nav_menu(array(
             Logout
         </a>
     <?php else : ?>
-        <div class="space-y-3 mt-2">
+        <div class="space-y-3 mt-4">
             <a href="<?php echo esc_url($auth_url); ?>" 
-               class="flex items-center gap-2 py-3 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-lg">login</span>
-                Login
+               class="w-full bg-primary text-white text-center font-black py-4 rounded-xl uppercase italic tracking-wider shadow-lg shadow-red-500/20 block active:scale-95 transition-all">
+               Login
             </a>
-            <a href="<?php echo esc_url( home_url('/register') ); ?>" 
+            <a href="<?php echo esc_url($register_url); ?>" 
                class="w-full bg-primary text-white text-center font-black py-4 rounded-xl uppercase italic tracking-wider shadow-lg shadow-red-500/20 block active:scale-95 transition-all">
                Register Now
             </a>

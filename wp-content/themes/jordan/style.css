@@ -75,31 +75,47 @@ Tags: education, wordpress
     animation: shimmer 3s linear infinite;
 }
 
-/* Nav link animated underline */
-.jordan-nav a {
-    position: relative;
-    transition: color 0.3s ease;
-}
-.jordan-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #f20d0d;
-    transition: width 0.35s ease;
-}
-.jordan-nav a:hover::after {
-    width: 100%;
-}
-.jordan-nav a:hover {
-    color: #f20d0d !important;
-}
-
-/* Nav list items strip default WP styles */
+/* Nav link animated effects */
 .jordan-nav li {
     list-style: none;
+    perspective: 1000px;
+}
+
+.jordan-nav a {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Home - Blue */
+.jordan-nav li:nth-of-type(1) a span {
+    color: inherit;
+}
+.jordan-nav li:nth-of-type(1) a:hover span {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6 !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* About/Categories - Purple/Red */
+.jordan-nav li:nth-of-type(2) a:hover span {
+    background: rgba(242, 13, 13, 0.05);
+    color: #f20d0d !important;
+    box-shadow: 0 4px 15px rgba(242, 13, 13, 0.1);
+    border: 1px solid rgba(242, 13, 13, 0.2);
+}
+
+/* Contact - Green */
+.jordan-nav li:nth-of-type(3) a:hover span {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e !important;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.jordan-nav a span {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 /* Logo hover */

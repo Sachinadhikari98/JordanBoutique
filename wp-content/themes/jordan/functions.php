@@ -797,6 +797,11 @@ function jordan_customize_register( $wp_customize ) {
 }
 
 
+// Ensure user registration is enabled
+if ( ! get_option( 'users_can_register' ) ) {
+    update_option( 'users_can_register', 1 );
+}
+
 // ============================================================
 // AUTH: Custom Login Redirects (Resilient)
 // ============================================================
