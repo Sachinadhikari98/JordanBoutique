@@ -78,15 +78,20 @@ wp_nav_menu(array(
 <!-- RIGHT: AUTH BUTTONS -->
 <div class="flex items-center justify-end gap-3">
 <?php 
-// Smart URL retrieval for Auth
-$login_page_obj = get_page_by_path('login');
-$auth_url = $login_page_obj ? get_permalink($login_page_obj) : wp_login_url();
+// Smart URL retrieval for Auth - Dynamic & Permalink Safe
+function jordan_get_safe_permalink($slug, $fallback_url) {
+    if (!$slug) return esc_url($fallback_url);
+    $page_obj = get_page_by_path($slug);
+    if ($page_obj) {
+        return get_permalink($page_obj);
+    }
+    // Fallback if slug search fails but site might have it via ID
+    return esc_url($fallback_url);
+}
 
-$register_page_obj = get_page_by_path('register');
-$register_url = $register_page_obj ? get_permalink($register_page_obj) : wp_registration_url();
-
-$profile_page_obj = get_page_by_path('profile');
-$profile_url = $profile_page_obj ? get_permalink($profile_page_obj) : admin_url('profile.php');
+$auth_url     = jordan_get_safe_permalink('login', wp_login_url());
+$register_url = jordan_get_safe_permalink('register', wp_registration_url());
+$profile_url  = jordan_get_safe_permalink('profile', admin_url('profile.php'));
 ?>
 
 <div class="hidden sm:flex items-center gap-2">

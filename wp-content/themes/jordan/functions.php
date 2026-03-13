@@ -802,6 +802,37 @@ if ( ! get_option( 'users_can_register' ) ) {
     update_option( 'users_can_register', 1 );
 }
 
+/**
+ * Auto-create Auth Pages
+ * Ensures Login, Register, and Profile pages exist in the DB.
+ */
+function jordan_ensure_auth_pages() {
+    $pages = array(
+        'login' => array('title' => 'Login', 'template' => 'page-login.php'),
+        'register' => array('title' => 'Register', 'template' => 'page-register.php'),
+        'profile' => array('title' => 'Profile', 'template' => 'page-profile.php'),
+    );
+
+    foreach ( $pages as $slug => $data ) {
+        $page_obj = get_page_by_path($slug);
+        if ( ! $page_obj ) {
+            $page_id = wp_insert_post( array(
+                'post_title'   => $data['title'],
+                'post_name'    => $slug,
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+            ));
+            if ( ! is_wp_error($page_id) ) {
+                update_post_meta( $page_id, '_wp_page_template', $data['template'] );
+            }
+        } else {
+            // Ensure correct template is assigned
+            update_post_meta( $page_obj->ID, '_wp_page_template', $data['template'] );
+        }
+    }
+}
+add_action('init', 'jordan_ensure_auth_pages');
+
 // ============================================================
 // AUTH: Custom Login Redirects (Resilient)
 // ============================================================
