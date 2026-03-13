@@ -40,7 +40,9 @@
             <div class="relative aspect-square overflow-hidden bg-[#1a1a1a]">
                 <img class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>"/>
                 <button onclick="window.jordanAddToCart(<?php the_ID(); ?>)" class="absolute bottom-4 right-4 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white text-black p-3 rounded-full flex items-center justify-center shadow-2xl hover:bg-primary hover:text-white active:scale-95">
-                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
                 </button>
             </div>
             <div class="p-5">

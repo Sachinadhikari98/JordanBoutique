@@ -102,7 +102,9 @@ Jordan Low Collection
         Rs <?php echo esc_html($price); ?>
     </span>
     <button onclick="window.jordanAddToCart(<?php the_ID(); ?>)" class="bg-primary text-white p-2.5 rounded-lg hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center shadow-lg shadow-red-500/10">
-        <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
     </button>
 </div>
 

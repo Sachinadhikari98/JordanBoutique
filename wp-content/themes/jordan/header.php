@@ -101,10 +101,13 @@ $profile_url  = jordan_get_safe_permalink('profile', admin_url('profile.php'));
         <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
     </a>
     <!-- Cart Button -->
-    <button id="cart-toggle" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
-        <span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">shopping_cart</span>
+    <?php $cart_page_url = jordan_get_safe_permalink('cart', home_url('/cart')); ?>
+    <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
         <span id="cart-count-badge" class="absolute -top-1 -right-1 size-5 bg-primary text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white dark:border-zinc-900 group-hover:scale-110 transition-transform hidden">0</span>
-    </button>
+    </a>
 
     <a href="<?php echo wp_logout_url( home_url() ); ?>" class="group flex items-center gap-2 px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="Logout">
         <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">logout</span>
@@ -123,21 +126,34 @@ $profile_url  = jordan_get_safe_permalink('profile', admin_url('profile.php'));
         </div>
 
         <!-- Cart Button (Guest) -->
-        <button id="cart-toggle-guest" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
-            <span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">shopping_cart</span>
+        <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
             <span id="cart-count-badge-guest" class="absolute -top-1 -right-1 size-5 bg-primary text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white dark:border-zinc-900 group-hover:scale-110 transition-transform hidden">0</span>
-        </button>
+        </a>
 <?php endif; ?>
 </div>
 
-<!-- Mobile hamburger -->
-<button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors ml-1" aria-label="Toggle menu">
-    <div class="flex flex-col gap-1.5 w-5">
-        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
-        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
-        <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
-    </div>
-</button>
+<!-- Mobile Actions -->
+<div class="flex items-center gap-2 md:hidden">
+    <!-- Cart Mobile -->
+    <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span id="cart-count-badge-mobile" class="absolute -top-1 -right-1 size-5 bg-primary text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white dark:border-zinc-900 group-hover:scale-110 transition-transform hidden">0</span>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="mobile-menu-toggle" class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors ml-1" aria-label="Toggle menu">
+        <div class="flex flex-col gap-1.5 w-5">
+            <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+            <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+            <span class="hamburger-bar block h-0.5 w-full bg-current rounded-full"></span>
+        </div>
+    </button>
+</div>
 </div>
 
 </div>
@@ -204,13 +220,17 @@ wp_nav_menu(array(
     </div>
 
     <!-- Cart Footer -->
+    <?php $cart_page_url = jordan_get_safe_permalink('cart', home_url('/cart')); ?>
     <div id="cart-footer" class="p-6 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hidden">
         <div class="flex items-center justify-between mb-6">
             <span class="text-xs font-bold uppercase tracking-widest text-zinc-500">Subtotal</span>
             <span id="cart-total-price" class="text-xl font-black italic text-primary">Rs 0</span>
         </div>
-        <a href="#" class="w-full bg-primary text-white font-black py-4 rounded-xl uppercase italic tracking-wider shadow-lg shadow-red-500/20 block text-center active:scale-95 transition-all mb-3 text-sm">
+        <a href="#" class="w-full bg-primary text-white font-black py-4 rounded-xl uppercase italic tracking-widest shadow-lg shadow-red-500/20 block text-center active:scale-95 transition-all mb-3 text-sm">
             Checkout Now
+        </a>
+        <a href="<?php echo esc_url($cart_page_url); ?>" class="w-full border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold py-3 rounded-xl uppercase tracking-widest block text-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-[10px]">
+            View Full Cart
         </a>
     </div>
 </div>
@@ -228,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- CART SYSTEM JS ---
-    const cartToggles = document.querySelectorAll('#cart-toggle, #cart-toggle-guest');
+    const cartToggles = document.querySelectorAll('#cart-toggle, #cart-toggle-guest, #cart-toggle-mobile');
     const cartDrawer = document.getElementById('cart-drawer');
     const cartOverlay = document.getElementById('cart-drawer-overlay');
     const cartClose = document.getElementById('cart-close');
@@ -236,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemsContainer = document.getElementById('cart-items-container');
     const cartFooter = document.getElementById('cart-footer');
     const cartTotalPrice = document.getElementById('cart-total-price');
-    const cartBadges = document.querySelectorAll('#cart-count-badge, #cart-count-badge-guest');
+    const cartBadges = document.querySelectorAll('#cart-count-badge, #cart-count-badge-guest, #cart-count-badge-mobile');
 
     function toggleCart() {
         cartDrawer.classList.toggle('is-open');
