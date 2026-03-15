@@ -118,10 +118,14 @@ Tags: education, wordpress
     border: 1px solid transparent;
 }
 
-/* Logo hover */
-.jordan-logo:hover .logo-icon {
+/* Logo styling & blending */
+.logo-image {
+    mix-blend-mode: screen;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+.jordan-logo:hover .logo-image {
     transform: scale(1.1) rotate(-5deg);
-    box-shadow: 0 0 20px rgba(242,13,13,0.4);
+    filter: drop-shadow(0 0 10px rgba(242,13,13,0.4));
 }
 .logo-icon {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -264,4 +268,81 @@ Tags: education, wordpress
 }
 .auth-card {
     animation: authFadeIn 0.5s ease-out both;
+}
+
+/* ============================================
+   CART DRAWER STYLES
+   ============================================ */
+
+#cart-drawer.is-open {
+    transform: translateX(0);
+}
+
+#cart-drawer-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    gap: 15px;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(113,113,122,0.1);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: rgba(113,113,122,0.05);
+    border-radius: 12px;
+}
+
+.cart-item-info h4 {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+}
+
+.cart-item-info p {
+    font-size: 12px;
+    color: #f20d0d; /* primary */
+    font-weight: 900;
+    font-style: italic;
+}
+
+.remove-item {
+    color: #71717a;
+    transition: color 0.3s ease;
+}
+
+.remove-item:hover {
+    color: #f20d0d;
+}
+
+#cart-count-badge:not(.hidden),
+#cart-count-badge-guest:not(.hidden) {
+    animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badgePop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes cartItemEntrance {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.cart-item {
+    animation: cartItemEntrance 0.3s ease-out both;
 }

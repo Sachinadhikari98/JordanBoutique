@@ -5,7 +5,14 @@
 
         <!-- BRAND COLUMN -->
         <div class="reveal-on-scroll">
-            <div class="flex items-center gap-2 mb-6">
+            <div class="flex flex-col gap-4 mb-6">
+                <a href="<?php echo home_url(); ?>" class="group inline-block">
+                    <?php if ( has_custom_logo() ) : ?>
+                        <?php the_custom_logo(); ?>
+                    <?php else : ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain logo-image transition-transform group-hover:scale-105">
+                    <?php endif; ?>
+                </a>
                 <h2 class="text-xl font-black tracking-tighter uppercase italic">
                     <?php bloginfo('name'); ?>
                 </h2>

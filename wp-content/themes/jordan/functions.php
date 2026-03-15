@@ -802,6 +802,38 @@ if ( ! get_option( 'users_can_register' ) ) {
     update_option( 'users_can_register', 1 );
 }
 
+/**
+ * Auto-create Required Pages
+ * Ensures Login, Register, Profile, and Cart pages exist in the DB.
+ */
+function jordan_ensure_required_pages() {
+    $pages = array(
+        'login'    => array('title' => 'Login', 'template' => 'page-login.php'),
+        'register' => array('title' => 'Register', 'template' => 'page-register.php'),
+        'profile'  => array('title' => 'Profile', 'template' => 'page-profile.php'),
+        'cart'     => array('title' => 'Cart', 'template' => 'page-cart.php'),
+    );
+
+    foreach ( $pages as $slug => $data ) {
+        $page_obj = get_page_by_path($slug);
+        if ( ! $page_obj ) {
+            $page_id = wp_insert_post( array(
+                'post_title'   => $data['title'],
+                'post_name'    => $slug,
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+            ));
+            if ( ! is_wp_error($page_id) ) {
+                update_post_meta( $page_id, '_wp_page_template', $data['template'] );
+            }
+        } else {
+            // Ensure correct template is assigned
+            update_post_meta( $page_obj->ID, '_wp_page_template', $data['template'] );
+        }
+    }
+}
+add_action('init', 'jordan_ensure_required_pages');
+
 // ============================================================
 // AUTH: Custom Login Redirects (Resilient)
 // ============================================================
@@ -829,4 +861,97 @@ function jordan_verify_user_pass( $user, $username, $password ) {
     return $user;
 }
 add_filter( 'authenticate', 'jordan_verify_user_pass', 10, 3);
+
+// ============================================================
+// SHOPPING CART: Session & AJAX Handlers
+// ============================================================
+
+/**
+ * Initialize PHP Session for Cart
+ */
+function jordan_init_session() {
+    if ( ! session_id() ) {
+        session_start();
+    }
+    if ( ! isset( $_SESSION['jordan_cart'] ) ) {
+        $_SESSION['jordan_cart'] = array();
+    }
+}
+add_action( 'init', 'jordan_init_session' );
+
+/**
+ * Enqueue Cart JS and Localize
+ */
+function jordan_cart_scripts() {
+    wp_localize_script( 'jquery', 'jordan_cart_params', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        'nonce'    => wp_create_nonce( 'jordan_cart_nonce' )
+    ));
+}
+add_action( 'wp_enqueue_scripts', 'jordan_cart_scripts' );
+
+/**
+ * AJAX: Add to Cart
+ */
+function jordan_add_to_cart() {
+    check_ajax_referer( 'jordan_cart_nonce', 'nonce' );
+
+    $post_id = intval( $_POST['post_id'] );
+    if ( ! $post_id ) wp_send_json_error( 'Invalid Product' );
+
+    $name  = get_post_meta( $post_id, 'shoe_name', true );
+    $price = get_post_meta( $post_id, 'shoe_price', true );
+    $img_id = get_post_meta( $post_id, 'shoe_image', true );
+    $img_url = wp_get_attachment_url( $img_id );
+
+    if ( ! isset( $_SESSION['jordan_cart'][$post_id] ) ) {
+        $_SESSION['jordan_cart'][$post_id] = array(
+            'id'    => $post_id,
+            'name'  => $name,
+            'price' => floatval( $price ),
+            'image' => $img_url,
+            'qty'   => 1
+        );
+    } else {
+        $_SESSION['jordan_cart'][$post_id]['qty']++;
+    }
+
+    wp_send_json_success( array(
+        'cart'  => $_SESSION['jordan_cart'],
+        'count' => array_sum( array_column( $_SESSION['jordan_cart'], 'qty' ) )
+    ));
+}
+add_action( 'wp_ajax_jordan_add_to_cart', 'jordan_add_to_cart' );
+add_action( 'wp_ajax_nopriv_jordan_add_to_cart', 'jordan_add_to_cart' );
+
+/**
+ * AJAX: Get Cart
+ */
+function jordan_get_cart() {
+    wp_send_json_success( array(
+        'cart'  => $_SESSION['jordan_cart'],
+        'count' => array_sum( array_column( $_SESSION['jordan_cart'], 'qty' ) )
+    ));
+}
+add_action( 'wp_ajax_jordan_get_cart', 'jordan_get_cart' );
+add_action( 'wp_ajax_nopriv_jordan_get_cart', 'jordan_get_cart' );
+
+/**
+ * AJAX: Remove from Cart
+ */
+function jordan_remove_from_cart() {
+    check_ajax_referer( 'jordan_cart_nonce', 'nonce' );
+    $post_id = intval( $_POST['post_id'] );
+    
+    if ( isset( $_SESSION['jordan_cart'][$post_id] ) ) {
+        unset( $_SESSION['jordan_cart'][$post_id] );
+    }
+
+    wp_send_json_success( array(
+        'cart'  => $_SESSION['jordan_cart'],
+        'count' => array_sum( array_column( $_SESSION['jordan_cart'], 'qty' ) )
+    ));
+}
+add_action( 'wp_ajax_jordan_remove_from_cart', 'jordan_remove_from_cart' );
+add_action( 'wp_ajax_nopriv_jordan_remove_from_cart', 'jordan_remove_from_cart' );
 
