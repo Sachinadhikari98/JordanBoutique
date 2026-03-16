@@ -891,10 +891,20 @@ add_action( 'init', 'jordan_init_session' );
  * Enqueue Cart JS and Localize
  */
 function jordan_cart_scripts() {
+    // Google Fonts: Lexend
+    wp_enqueue_style('google-font-lexend', 'https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap', array(), null);
+    
+    // Material Symbols Outlined
+    wp_enqueue_style('google-font-material-symbols', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..0&display=block', array(), null);
+    
+    // Main Stylesheet
+    wp_enqueue_style('jordan-main-style', get_stylesheet_uri(), array(), '1.1');
+
     wp_enqueue_script('jquery');
     wp_localize_script( 'jquery', 'jordan_cart_params', array(
-        'ajax_url' => admin_url( 'admin-ajax.php' ),
-        'nonce'    => wp_create_nonce( 'jordan_cart_nonce' )
+        'ajax_url'       => admin_url( 'admin-ajax.php' ),
+        'nonce'          => wp_create_nonce( 'jordan_cart_nonce' ),
+        'categories_url' => jordan_get_safe_permalink('categories', home_url('/categories'))
     ));
 }
 add_action( 'wp_enqueue_scripts', 'jordan_cart_scripts' );

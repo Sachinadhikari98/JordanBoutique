@@ -206,12 +206,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!itemsContainer) return;
         if (Object.keys(cart).length === 0) {
             itemsContainer.innerHTML = `
-        <div class="h-full flex flex-col items-center justify-center text-center opacity-50">
-            <span class="material-symbols-outlined text-6xl mb-4">shopping_basket</span>
-            <p class="font-bold uppercase tracking-widest text-xs">Your cart is empty</p>
-            <button id="re-continue" class="mt-4 text-primary font-black uppercase italic text-[10px] tracking-widest hover:underline">Continue Shopping</button>
+        <div class="h-full flex flex-col items-center justify-center text-center py-12">
+            <div class="size-24 bg-zinc-100 dark:bg-zinc-800/50 rounded-full flex items-center justify-center mb-6 relative">
+                <span class="material-symbols-outlined text-4xl text-zinc-400 dark:text-zinc-600">shopping_basket</span>
+                <div class="absolute -top-1 -right-1 size-4 bg-primary rounded-full animate-ping opacity-25"></div>
+            </div>
+            <p class="font-black uppercase tracking-widest text-xs mb-2">Your collection is empty</p>
+            <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-6">Add some heat to your cart</p>
+            <a href="${jordan_cart_params.categories_url || '#'}" id="re-continue" class="px-8 py-3 bg-primary text-white font-black uppercase italic text-[11px] tracking-widest rounded-xl shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95 transition-all text-center">Start Shopping</a>
         </div>`;
-            document.getElementById('re-continue')?.addEventListener('click', toggleCart);
             if (cartFooter) cartFooter.classList.add('hidden');
         } else {
             itemsContainer.innerHTML = '';

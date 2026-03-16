@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const cart = data.cart;
         const count = data.count;
 
-        if (Object.keys(cart).length === 0) {
+        if (!cart || Object.keys(cart).length === 0) {
             itemsContainer.innerHTML = `
-                <div class="flex flex-col items-center justify-center py-20 bg-white/5 rounded-2xl border border-white/5 text-center">
+                <div class="flex flex-col items-center justify-center py-20 bg-zinc-900/40 rounded-3xl border border-white/5 text-center px-6 backdrop-blur-xl">
                     <span class="material-symbols-outlined text-6xl mb-4 text-slate-600">shopping_basket</span>
-                    <p class="text-xl font-bold uppercase tracking-widest text-slate-400">Your cart is empty</p>
-                    <a href="<?php echo home_url(); ?>" class="mt-6 text-primary font-black uppercase italic text-sm tracking-widest hover:underline">Start Shopping</a>
+                    <p class="text-xl font-black uppercase tracking-widest text-white mb-2 italic">Your grail collection is empty</p>
+                    <a href="<?php echo home_url('/categories'); ?>" class="mt-6 px-10 py-3 bg-primary text-white font-black uppercase italic text-xs tracking-widest rounded-xl shadow-lg shadow-red-500/20 hover:scale-105 transition-all">Start Shopping</a>
                 </div>`;
             subtotalEl.innerText = 'Rs 0';
             totalEl.innerText = 'Rs 0';
@@ -81,54 +81,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         let html = '';
+        let totalVal = 0; 
+        
         Object.values(cart).forEach(item => {
-            total += item.price * item.qty;
+            const price = parseFloat(item.price) || 0;
+            const qty = parseInt(item.qty) || 0;
+            const sub = price * qty;
+            totalVal += sub;
+            
             html += `
-                <div class="cart-item-row flex flex-col md:flex-row items-center gap-6 p-6 bg-white/5 border border-white/5 rounded-2xl group transition-all hover:border-primary/20 hover:bg-white/[0.08]">
-                    <div class="w-32 h-32 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 border border-white/5">
-                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-2 transition-transform group-hover:scale-110 drop-shadow-2xl">
+                <div class="cart-item-row grid grid-cols-1 md:grid-cols-[140px_1fr_180px] items-center gap-8 p-6 md:p-8 bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-3xl group transition-all duration-500 hover:border-primary/30 hover:bg-white/[0.05] relative overflow-hidden">
+                    
+                    <!-- Product Image -->
+                    <div class="w-full h-32 md:h-32 bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-primary/20 transition-colors">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                     </div>
                     
-                    <div class="flex-1 text-center md:text-left">
-                        <h4 class="text-xl font-black uppercase italic tracking-tighter mb-1 font-display tracking-tight">${item.name}</h4>
-                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Jordan Boutique Official</p>
+                    <!-- Product Details -->
+                    <div class="flex flex-col text-center md:text-left">
+                        <span class="text-primary font-black uppercase italic tracking-[0.3em] text-[10px] mb-2">Original Grail</span>
+                        <h4 class="text-xl md:text-2xl font-black uppercase italic tracking-tighter leading-none mb-4">${item.name}</h4>
                         
-                        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                            <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-lg border border-white/10 group-hover:border-primary/30 transition-colors">
-                                <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Qty:</span>
-                                <span class="font-black italic text-sm text-primary">${item.qty}</span>
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-6">
+                            <div class="flex items-center gap-3 bg-white/5 px-4 py-1.5 rounded-lg border border-white/10">
+                                <span class="text-[9px] font-black uppercase tracking-widest text-slate-500">Qty</span>
+                                <span class="font-black italic text-sm text-primary">${qty}</span>
                             </div>
-                            <span class="text-white font-black italic text-lg">Rs ${item.price.toLocaleString()}</span>
+                            <div class="flex flex-col items-center md:items-start">
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Unit Price</span>
+                                <span class="text-white font-black italic text-sm">Rs ${price.toLocaleString()}</span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="flex flex-col items-center md:items-end gap-2 border-l border-white/10 pl-8 hidden md:flex">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Subtotal</span>
-                        <span class="text-2xl font-black italic text-primary">Rs ${(item.price * item.qty).toLocaleString()}</span>
-                        <button onclick="removeFromFullCart(${item.id})" class="mt-4 text-zinc-500 hover:text-white transition-all flex items-center gap-2 group/btn">
+                    
+                    <!-- Price & Actions -->
+                    <div class="flex flex-col items-center md:items-end justify-center gap-4 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
+                        <div class="text-center md:text-right w-full">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-1">Subtotal</span>
+                            <span class="text-2xl md:text-3xl font-black italic text-primary leading-none block">Rs ${sub.toLocaleString()}</span>
+                        </div>
+                        
+                        <button onclick="removeFromFullCart(${item.id})" class="text-zinc-500 hover:text-white transition-all flex items-center gap-2 group/btn px-3 py-1.5 hover:bg-red-500/10 rounded-lg border border-transparent hover:border-red-500/20">
                             <span class="material-symbols-outlined text-lg group-hover/btn:text-primary transition-colors">delete</span>
-                            <span class="text-[10px] font-bold uppercase tracking-widest group-hover/btn:tracking-[0.2em] transition-all">Remove Item</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Remove Item</span>
                         </button>
                     </div>
 
-                    <!-- Mobile Subtotal -->
-                    <div class="md:hidden flex flex-col items-center gap-4 pt-4 border-t border-white/10 w-full">
-                        <div class="flex justify-between w-full px-4 text-sm">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Subtotal</span>
-                            <span class="text-xl font-black italic text-primary">Rs ${(item.price * item.qty).toLocaleString()}</span>
-                        </div>
-                        <button onclick="removeFromFullCart(${item.id})" class="text-zinc-500 hover:text-white transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">delete</span>
-                            <span class="text-[10px] font-bold uppercase tracking-widest">Remove</span>
-                        </button>
-                    </div>
                 </div>
             `;
         });
 
         itemsContainer.innerHTML = html;
-        subtotalEl.innerText = `Rs ${total.toLocaleString()}`;
-        totalEl.innerText = `Rs ${total.toLocaleString()}`;
+        subtotalEl.innerText = `Rs ${totalVal.toLocaleString()}`;
+        totalEl.innerText = `Rs ${totalVal.toLocaleString()}`;
     }
 
     window.removeFromFullCart = function(id) {
@@ -155,12 +160,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchFullCart() {
+        console.log('Fetching full cart data...');
         jQuery.ajax({
             url: jordan_cart_params.ajax_url,
             type: 'POST',
             data: { action: 'jordan_get_cart' },
             success: (response) => {
-                if(response.success) updateFullCartUI(response.data);
+                console.log('Cart Response:', response);
+                if(response.success) {
+                    updateFullCartUI(response.data);
+                } else {
+                    console.error('Failed to fetch cart:', response);
+                }
+            },
+            error: (err) => {
+                console.error('AJAX Error fetching cart:', err);
             }
         });
     }

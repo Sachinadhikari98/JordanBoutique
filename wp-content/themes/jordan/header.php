@@ -10,9 +10,6 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -191,22 +188,29 @@
 
 
     <!-- CART DRAWER -->
-    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-all duration-500"></div>
-    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white dark:bg-zinc-900 z-[101] translate-x-full transition-transform duration-500 shadow-2xl flex flex-col">
-        <div class="p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-            <h2 class="text-xl font-black uppercase italic tracking-tighter">Your <span class="text-primary">Cart</span></h2>
-            <button id="cart-close" class="size-10 flex items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                <span class="material-symbols-outlined">close</span>
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] opacity-0 pointer-events-none transition-all duration-500"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white dark:bg-zinc-900 z-[9999] shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-800/20 backdrop-blur-md">
+            <h2 class="text-xl font-black uppercase italic tracking-tighter flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                Your <span class="text-primary">Cart</span>
+            </h2>
+            <button id="cart-close" class="size-10 flex items-center justify-center rounded-xl hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all active:scale-90 group" title="Close Cart">
+                <span class="material-symbols-outlined transition-transform group-hover:rotate-90">close</span>
             </button>
         </div>
 
         <!-- Cart Items Area -->
         <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-6">
             <!-- JS will populate this -->
-            <div class="h-full flex flex-col items-center justify-center text-center opacity-50">
-                <span class="material-symbols-outlined text-6xl mb-4">shopping_basket</span>
-                <p class="font-bold uppercase tracking-widest text-xs">Your cart is empty</p>
-                <button id="continue-shopping" class="mt-4 text-primary font-black uppercase italic text-[10px] tracking-widest hover:underline">Continue Shopping</button>
+            <div class="h-full flex flex-col items-center justify-center text-center py-12">
+                <div class="size-24 bg-zinc-100 dark:bg-zinc-800/50 rounded-full flex items-center justify-center mb-6 relative">
+                    <span class="material-symbols-outlined text-4xl text-zinc-400 dark:text-zinc-600">shopping_basket</span>
+                    <div class="absolute -top-1 -right-1 size-4 bg-primary rounded-full animate-ping opacity-25"></div>
+                </div>
+                <p class="font-black uppercase tracking-widest text-xs mb-2">Your collection is empty</p>
+                <?php $categories_url = jordan_get_safe_permalink('categories', home_url('/categories')); ?>
+                <a href="<?php echo esc_url($categories_url); ?>" id="continue-shopping" class="px-8 py-3 bg-primary text-white font-black uppercase italic text-[11px] tracking-widest rounded-xl shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95 transition-all">Start Shopping</a>
             </div>
         </div>
 
