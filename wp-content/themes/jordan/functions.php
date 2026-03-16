@@ -832,6 +832,14 @@ function jordan_ensure_required_pages() {
         }
     }
 }
+/**
+ * Helper: Get safe permalink or fallback
+ */
+function jordan_get_safe_permalink($slug, $fallback = '#') {
+    $page = get_page_by_path($slug);
+    return $page ? get_permalink($page) : $fallback;
+}
+
 add_action('init', 'jordan_ensure_required_pages');
 
 // ============================================================

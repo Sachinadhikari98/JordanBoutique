@@ -117,8 +117,18 @@
 </a>
 
 <script>
-// Scroll reveal observer
 document.addEventListener('DOMContentLoaded', function() {
+    // --- MOBILE MENU ---
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+        toggle.addEventListener('click', function() {
+            menu.classList.toggle('is-open');
+            toggle.querySelector('.flex').classList.toggle('hamburger-active');
+        });
+    }
+
+    // --- SCROLL REVEAL ---
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -135,6 +145,155 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.reveal-on-scroll').forEach(el => {
         observer.observe(el);
     });
+
+    // --- CART SYSTEM JS ---
+    const cartToggles = document.querySelectorAll('#cart-toggle, #cart-toggle-guest, #cart-toggle-mobile');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-drawer-overlay');
+    const cartClose = document.getElementById('cart-close');
+    const continueShopping = document.getElementById('continue-shopping');
+    const itemsContainer = document.getElementById('cart-items-container');
+    const cartFooter = document.getElementById('cart-footer');
+    const cartTotalPrice = document.getElementById('cart-total-price');
+    const cartBadges = document.querySelectorAll('#cart-count-badge, #cart-count-badge-guest, #cart-count-badge-mobile');
+
+    console.log('Cart System Initialized', {
+        togglesCount: cartToggles.length,
+        drawerExists: !!cartDrawer,
+        overlayExists: !!cartOverlay
+    });
+
+    function toggleCart(e) {
+        if (e && typeof e.preventDefault === 'function') {
+            e.preventDefault();
+        }
+        
+        if (!cartDrawer || !cartOverlay) {
+            console.error('Cart drawer or overlay missing!', { cartDrawer, cartOverlay });
+            return;
+        }
+
+        const isOpen = cartDrawer.classList.toggle('is-open');
+        cartOverlay.classList.toggle('is-visible');
+        
+        console.log('Cart Toggled', { isOpen });
+
+        if (isOpen) {
+            refreshCart();
+        }
+    }
+
+    cartToggles.forEach(btn => {
+        btn.addEventListener('click', toggleCart);
+    });
+    
+    if (cartClose) cartClose.addEventListener('click', toggleCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', toggleCart);
+    if (continueShopping) continueShopping.addEventListener('click', toggleCart);
+
+    window.updateCartUI = function(data) {
+        if (!data || !data.cart) return;
+        const cart = data.cart;
+        const count = data.count;
+
+        // Update badges
+        cartBadges.forEach(badge => {
+            badge.innerText = count;
+            count > 0 ? badge.classList.remove('hidden') : badge.classList.add('hidden');
+        });
+
+        // Update container
+        if (!itemsContainer) return;
+        if (Object.keys(cart).length === 0) {
+            itemsContainer.innerHTML = `
+        <div class="h-full flex flex-col items-center justify-center text-center opacity-50">
+            <span class="material-symbols-outlined text-6xl mb-4">shopping_basket</span>
+            <p class="font-bold uppercase tracking-widest text-xs">Your cart is empty</p>
+            <button id="re-continue" class="mt-4 text-primary font-black uppercase italic text-[10px] tracking-widest hover:underline">Continue Shopping</button>
+        </div>`;
+            document.getElementById('re-continue')?.addEventListener('click', toggleCart);
+            if (cartFooter) cartFooter.classList.add('hidden');
+        } else {
+            itemsContainer.innerHTML = '';
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                total += item.price * item.qty;
+                itemsContainer.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>Rs ${item.price.toLocaleString()} x ${item.qty}</p>
+                </div>
+                <button class="remove-item material-symbols-outlined" data-id="${item.id}">delete</button>
+            </div>  
+        `;
+            });
+            if (cartTotalPrice) cartTotalPrice.innerText = `Rs ${total.toLocaleString()}`;
+            if (cartFooter) cartFooter.classList.remove('hidden');
+
+            // Attach remove events
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+        }
+    }
+
+    function refreshCart() {
+        if (typeof jordan_cart_params === 'undefined' || !jordan_cart_params.ajax_url) return;
+        jQuery.ajax({
+            url: jordan_cart_params.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'jordan_get_cart'
+            },
+            success: (response) => {
+                if (response.success) updateCartUI(response.data);
+            }
+        });
+    }
+
+    function removeFromCart(id) {
+        if (typeof jordan_cart_params === 'undefined' || !jordan_cart_params.nonce) return;
+        jQuery.ajax({
+            url: jordan_cart_params.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'jordan_remove_from_cart',
+                post_id: id,
+                nonce: jordan_cart_params.nonce
+            },
+            success: (response) => {
+                if (response.success) updateCartUI(response.data);
+            }
+        });
+    }
+
+    // Add to cart event delegation
+    window.jordanAddToCart = function(productId) {
+        if (typeof jordan_cart_params === 'undefined' || !jordan_cart_params.nonce) return;
+        jQuery.ajax({
+            url: jordan_cart_params.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'jordan_add_to_cart',
+                post_id: productId,
+                nonce: jordan_cart_params.nonce
+            },
+            success: (response) => {
+                if (response.success) {
+                    updateCartUI(response.data);
+                    if (cartDrawer && !cartDrawer.classList.contains('is-open')) toggleCart();
+                }
+            }
+        });
+    };
+
+    // Initial count check
+    refreshCart();
 });
 </script>
 

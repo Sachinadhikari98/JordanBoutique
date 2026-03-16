@@ -79,18 +79,6 @@
             <!-- RIGHT: AUTH BUTTONS -->
             <div class="flex items-center justify-end gap-3">
                 <?php
-                // Smart URL retrieval for Auth - Dynamic & Permalink Safe
-                function jordan_get_safe_permalink($slug, $fallback_url)
-                {
-                    if (!$slug) return esc_url($fallback_url);
-                    $page_obj = get_page_by_path($slug);
-                    if ($page_obj) {
-                        return get_permalink($page_obj);
-                    }
-                    // Fallback if slug search fails but site might have it via ID
-                    return esc_url($fallback_url);
-                }
-
                 $auth_url      = jordan_get_safe_permalink('login', wp_login_url());
                 $register_url  = jordan_get_safe_permalink('register', wp_registration_url());
                 $profile_url   = jordan_get_safe_permalink('profile', admin_url('profile.php'));
@@ -103,8 +91,8 @@
                             <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">account_circle</span>
                             <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
                         </a>
-                        <!-- Cart Button -->
-                        <a id="cart-toggle" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                        <?php $cart_page_url = jordan_get_safe_permalink('cart', home_url('/cart')); ?>
+                        <a id="cart-toggle" href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -128,7 +116,7 @@
                         </div>
 
                         <!-- Cart Button (Guest) -->
-                        <a id="cart-toggle-guest" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                        <a id="cart-toggle-guest" href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -140,7 +128,7 @@
                 <!-- Mobile Actions -->
                 <div class="flex items-center gap-2 md:hidden">
                     <!-- Cart Mobile -->
-                    <a id="cart-toggle-mobile" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                    <a id="cart-toggle-mobile" href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -237,140 +225,4 @@
             </a>
         </div>
     </div>
-
-    <!-- Mobile menu toggle script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.getElementById('mobile-menu-toggle');
-            const menu = document.getElementById('mobile-menu');
-            if (toggle && menu) {
-                toggle.addEventListener('click', function() {
-                    menu.classList.toggle('is-open');
-                    toggle.querySelector('.flex').classList.toggle('hamburger-active');
-                });
-            }
-
-            // --- CART SYSTEM JS ---
-            const cartToggles = document.querySelectorAll('#cart-toggle, #cart-toggle-guest, #cart-toggle-mobile');
-            const cartDrawer = document.getElementById('cart-drawer');
-            const cartOverlay = document.getElementById('cart-drawer-overlay');
-            const cartClose = document.getElementById('cart-close');
-            const continueShopping = document.getElementById('continue-shopping');
-            const itemsContainer = document.getElementById('cart-items-container');
-            const cartFooter = document.getElementById('cart-footer');
-            const cartTotalPrice = document.getElementById('cart-total-price');
-            const cartBadges = document.querySelectorAll('#cart-count-badge, #cart-count-badge-guest, #cart-count-badge-mobile');
-
-            function toggleCart() {
-                cartDrawer.classList.toggle('is-open');
-                cartOverlay.classList.toggle('is-visible');
-                if (cartDrawer.classList.contains('is-open')) {
-                    refreshCart();
-                }
-            }
-
-            cartToggles.forEach(btn => btn.addEventListener('click', toggleCart));
-            cartClose.addEventListener('click', toggleCart);
-            cartOverlay.addEventListener('click', toggleCart);
-            if (continueShopping) continueShopping.addEventListener('click', toggleCart);
-
-            window.updateCartUI = function(data) {
-                const cart = data.cart;
-                const count = data.count;
-
-                // Update badges
-                cartBadges.forEach(badge => {
-                    badge.innerText = count;
-                    count > 0 ? badge.classList.remove('hidden') : badge.classList.add('hidden');
-                });
-
-                // Update container
-                if (Object.keys(cart).length === 0) {
-                    itemsContainer.innerHTML = `
-                <div class="h-full flex flex-col items-center justify-center text-center opacity-50">
-                    <span class="material-symbols-outlined text-6xl mb-4">shopping_basket</span>
-                    <p class="font-bold uppercase tracking-widest text-xs">Your cart is empty</p>
-                    <button id="re-continue" class="mt-4 text-primary font-black uppercase italic text-[10px] tracking-widest hover:underline">Continue Shopping</button>
-                </div>`;
-                    document.getElementById('re-continue')?.addEventListener('click', toggleCart);
-                    cartFooter.classList.add('hidden');
-                } else {
-                    itemsContainer.innerHTML = '';
-                    let total = 0;
-                    Object.values(cart).forEach(item => {
-                        total += item.price * item.qty;
-                        itemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p>Rs ${item.price.toLocaleString()} x ${item.qty}</p>
-                        </div>
-                        <button class="remove-item material-symbols-outlined" data-id="${item.id}">delete</button>
-                    </div>  
-                `;
-                    });
-                    cartTotalPrice.innerText = `Rs ${total.toLocaleString()}`;
-                    cartFooter.classList.remove('hidden');
-
-                    // Attach remove events
-                    document.querySelectorAll('.remove-item').forEach(btn => {
-                        btn.addEventListener('click', function() {
-                            const id = this.getAttribute('data-id');
-                            removeFromCart(id);
-                        });
-                    });
-                }
-            }
-
-            function refreshCart() {
-                jQuery.ajax({
-                    url: jordan_cart_params.ajax_url,
-                    type: 'POST',
-                    data: {
-                        action: 'jordan_get_cart'
-                    },
-                    success: (response) => {
-                        if (response.success) updateCartUI(response.data);
-                    }
-                });
-            }
-
-            function removeFromCart(id) {
-                jQuery.ajax({
-                    url: jordan_cart_params.ajax_url,
-                    type: 'POST',
-                    data: {
-                        action: 'jordan_remove_from_cart',
-                        post_id: id,
-                        nonce: jordan_cart_params.nonce
-                    },
-                    success: (response) => {
-                        if (response.success) updateCartUI(response.data);
-                    }
-                });
-            }
-
-            // Add to cart event delegation
-            window.jordanAddToCart = function(productId) {
-                jQuery.ajax({
-                    url: jordan_cart_params.ajax_url,
-                    type: 'POST',
-                    data: {
-                        action: 'jordan_add_to_cart',
-                        post_id: productId,
-                        nonce: jordan_cart_params.nonce
-                    },
-                    success: (response) => {
-                        if (response.success) {
-                            updateCartUI(response.data);
-                            if (!cartDrawer.classList.contains('is-open')) toggleCart();
-                        }
-                    }
-                });
-            };
-
-            // Initial count check
-            refreshCart();
-        });
-    </script>
+
