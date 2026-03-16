@@ -883,6 +883,7 @@ add_action( 'init', 'jordan_init_session' );
  * Enqueue Cart JS and Localize
  */
 function jordan_cart_scripts() {
+    wp_enqueue_script('jquery');
     wp_localize_script( 'jquery', 'jordan_cart_params', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'nonce'    => wp_create_nonce( 'jordan_cart_nonce' )

@@ -81,33 +81,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         let html = '';
-        let total = 0;
-        
         Object.values(cart).forEach(item => {
             total += item.price * item.qty;
             html += `
-                <div class="flex flex-col md:flex-row items-center gap-6 p-6 bg-white/5 border border-white/5 rounded-2xl group transition-all hover:border-primary/20">
-                    <div class="w-32 h-32 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0">
-                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-2 transition-transform group-hover:scale-110">
+                <div class="cart-item-row flex flex-col md:flex-row items-center gap-6 p-6 bg-white/5 border border-white/5 rounded-2xl group transition-all hover:border-primary/20 hover:bg-white/[0.08]">
+                    <div class="w-32 h-32 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 border border-white/5">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-2 transition-transform group-hover:scale-110 drop-shadow-2xl">
                     </div>
                     
                     <div class="flex-1 text-center md:text-left">
-                        <h4 class="text-xl font-black uppercase italic tracking-tighter mb-1">${item.name}</h4>
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">Jordan Boutique Collection</p>
+                        <h4 class="text-xl font-black uppercase italic tracking-tighter mb-1 font-display tracking-tight">${item.name}</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Jordan Boutique Official</p>
                         
                         <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                            <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                            <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-lg border border-white/10 group-hover:border-primary/30 transition-colors">
                                 <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Qty:</span>
-                                <span class="font-black italic text-sm">${item.qty}</span>
+                                <span class="font-black italic text-sm text-primary">${item.qty}</span>
                             </div>
-                            <span class="text-primary font-black italic text-lg">Rs ${item.price.toLocaleString()}</span>
+                            <span class="text-white font-black italic text-lg">Rs ${item.price.toLocaleString()}</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center md:items-end gap-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Subtotal</span>
-                        <span class="text-xl font-black italic">Rs ${(item.price * item.qty).toLocaleString()}</span>
-                        <button onclick="removeFromFullCart(${item.id})" class="mt-4 text-zinc-500 hover:text-primary transition-colors flex items-center gap-1">
+                    <div class="flex flex-col items-center md:items-end gap-2 border-l border-white/10 pl-8 hidden md:flex">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Subtotal</span>
+                        <span class="text-2xl font-black italic text-primary">Rs ${(item.price * item.qty).toLocaleString()}</span>
+                        <button onclick="removeFromFullCart(${item.id})" class="mt-4 text-zinc-500 hover:text-white transition-all flex items-center gap-2 group/btn">
+                            <span class="material-symbols-outlined text-lg group-hover/btn:text-primary transition-colors">delete</span>
+                            <span class="text-[10px] font-bold uppercase tracking-widest group-hover/btn:tracking-[0.2em] transition-all">Remove Item</span>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Subtotal -->
+                    <div class="md:hidden flex flex-col items-center gap-4 pt-4 border-t border-white/10 w-full">
+                        <div class="flex justify-between w-full px-4 text-sm">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Subtotal</span>
+                            <span class="text-xl font-black italic text-primary">Rs ${(item.price * item.qty).toLocaleString()}</span>
+                        </div>
+                        <button onclick="removeFromFullCart(${item.id})" class="text-zinc-500 hover:text-white transition-all flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">delete</span>
                             <span class="text-[10px] font-bold uppercase tracking-widest">Remove</span>
                         </button>
@@ -122,6 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.removeFromFullCart = function(id) {
+        // Find row and fade it
+        const row = document.querySelector(`button[onclick="removeFromFullCart(${id})"]`)?.closest('.cart-item-row');
+        if (row) row.style.opacity = '0.5';
+
         jQuery.ajax({
             url: jordan_cart_params.ajax_url,
             type: 'POST',
@@ -133,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
             success: (response) => {
                 if(response.success) {
                     updateFullCartUI(response.data);
-                    // Also update global count if any (badges)
+                    // Also update global count and drawer badges
                     if(window.updateCartUI) window.updateCartUI(response.data);
                 }
             }

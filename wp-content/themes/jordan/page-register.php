@@ -91,7 +91,13 @@ get_header(); ?>
 
                         <div>
                             <label for="user_email" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Email Address</label>
-                            <input type="email" name="user_email" id="user_email" class="auth-input w-full px-5 py-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-sm font-medium" placeholder="your@email.com" required value="<?php echo isset($_POST['user_email']) ? esc_attr($_POST['user_email']) : ''; ?>">
+                            <input type="email" name="user_email" id="user_email" class="auth-input w-full px-5 py-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-sm font-medium" placeholder="your@email.com" required value="<?php 
+                                if (isset($_POST['user_email'])) {
+                                    echo esc_attr($_POST['user_email']);
+                                } elseif (isset($_GET['email'])) {
+                                    echo esc_attr($_GET['email']);
+                                }
+                            ?>">
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

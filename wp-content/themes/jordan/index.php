@@ -76,10 +76,10 @@
         <div class="relative z-10 max-w-2xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4 italic"><?php echo esc_html( get_theme_mod('homepage_newsletter_title', 'Stay in the Loop') ); ?></h2>
             <p class="text-white/90 text-lg mb-8 font-medium"><?php echo esc_html( get_theme_mod('homepage_newsletter_desc', 'Join our inner circle for early access to the next limited release drop. Never miss a win again.') ); ?></p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <input class="px-6 py-4 rounded-lg bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:ring-white focus:border-white min-w-[300px]" placeholder="Enter your email" type="email" />
-                <button class="bg-white text-primary font-black px-10 py-4 rounded-lg hover:bg-zinc-100 transition-all uppercase italic">Join Now</button>
-            </div>
+            <form action="<?php echo esc_url(get_permalink(get_page_by_path('register'))); ?>" method="get" class="flex flex-col sm:flex-row gap-3 justify-center">
+                <input name="email" class="px-6 py-4 rounded-lg bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:ring-white focus:border-white min-w-[300px]" placeholder="Enter your email" type="email" required />
+                <button type="submit" class="bg-white text-primary font-black px-10 py-4 rounded-lg hover:bg-zinc-100 transition-all uppercase italic">Join Now</button>
+            </form>
             <p class="text-white/50 text-xs mt-6">By joining, you agree to receive marketing messages. Opt-out at any time.</p>
         </div>
     </section>

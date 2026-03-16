@@ -104,7 +104,7 @@
                             <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
                         </a>
                         <!-- Cart Button -->
-                        <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                        <a id="cart-toggle" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -128,7 +128,7 @@
                         </div>
 
                         <!-- Cart Button (Guest) -->
-                        <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                        <a id="cart-toggle-guest" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -140,7 +140,7 @@
                 <!-- Mobile Actions -->
                 <div class="flex items-center gap-2 md:hidden">
                     <!-- Cart Mobile -->
-                    <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
+                    <a id="cart-toggle-mobile" href="javascript:void(0)" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -274,7 +274,7 @@
             cartOverlay.addEventListener('click', toggleCart);
             if (continueShopping) continueShopping.addEventListener('click', toggleCart);
 
-            function updateCartUI(data) {
+            window.updateCartUI = function(data) {
                 const cart = data.cart;
                 const count = data.count;
 
