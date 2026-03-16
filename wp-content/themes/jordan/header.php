@@ -91,9 +91,10 @@
                     return esc_url($fallback_url);
                 }
 
-                $auth_url     = jordan_get_safe_permalink('login', wp_login_url());
-                $register_url = jordan_get_safe_permalink('register', wp_registration_url());
-                $profile_url  = jordan_get_safe_permalink('profile', admin_url('profile.php'));
+                $auth_url      = jordan_get_safe_permalink('login', wp_login_url());
+                $register_url  = jordan_get_safe_permalink('register', wp_registration_url());
+                $profile_url   = jordan_get_safe_permalink('profile', admin_url('profile.php'));
+                $cart_page_url = jordan_get_safe_permalink('cart', home_url('/cart'));
                 ?>
 
                 <div class="hidden sm:flex items-center gap-2">
@@ -103,7 +104,6 @@
                             <span class="hidden lg:inline text-[10px] font-bold uppercase tracking-widest group-hover:text-primary transition-colors">Profile</span>
                         </a>
                         <!-- Cart Button -->
-                        <?php $cart_page_url = jordan_get_safe_permalink('cart', home_url('/cart')); ?>
                         <a href="<?php echo esc_url($cart_page_url); ?>" class="group relative flex items-center justify-center p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-all duration-300" title="View Cart">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -201,30 +201,6 @@
 
     </header>
 
-    <!-- GLOBAL HERO SECTION (Moved from Homepage as requested) -->
-    <div class="max-w-[1200px] mx-auto px-6 pt-8 pb-0 h-auto">
-        <section class="relative rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 mb-8 shadow-2xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-                <div class="p-10 md:p-16 flex flex-col justify-center order-2 md:order-1">
-                    <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"><?php echo esc_html(get_theme_mod('homepage_hero_subtitle', 'New Arrival Drop')); ?></span>
-                    <h1 class="text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter mb-6 uppercase">
-                        <?php echo esc_html(get_theme_mod('homepage_hero_title_1', 'Legends')); ?> <br /> <span class="text-primary"><?php echo esc_html(get_theme_mod('homepage_hero_title_2', 'Never Die.')); ?></span>
-                    </h1>
-                    <p class="text-zinc-600 dark:text-zinc-400 text-lg mb-8 max-w-md">
-                        <?php echo esc_html(get_theme_mod('homepage_hero_desc', "The definitive Jordan 1 'Chicago' Reimagined. A tribute to the icon that changed everything. Limited stock available.")); ?>
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="<?php echo get_permalink(get_page_by_path('categories')); ?>"
-                            class="bg-primary text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
-                            <?php echo esc_html(get_theme_mod('homepage_cta_text', 'Shop Now')); ?>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-cover bg-center min-h-[400px] order-1 md:order-2" data-alt="Close up shot of Air Jordan 1 Chicago sneakers on a minimalist background" style='background-image: url("<?php echo esc_url(get_theme_mod('homepage_hero_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBLJ-K9y4EgHYRGLJmomWdx0l_WnBP1sLazc8v6YC8qlYRONZSMz1TUpfTVjGNjV4_IvHJDIx1nRws05VqLKZW6qmDSMJAOOHG-dB4gZDoKre8eF6ElYPPi51bFEKqLdXys_9aepXrrF9l4abMr57U73f7Fb5T1hgpt7mBlLLSof1IOGefhNdqFoOItkNggfxm3yAyTPM6m4bVxDqM2LY1vi4zJBlp5fkELHIO7xsOespGblBR8iLwT3nyuArmztRfoY4_gR33BhnM')); ?>");'>
-                </div>
-            </div>
-        </section>
-    </div>
 
     <!-- CART DRAWER -->
     <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-all duration-500"></div>

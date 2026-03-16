@@ -88,6 +88,8 @@ $table_prefix = 'wp_';
 define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
+define('WP_HOME', 'http://localhost/Jordan');
+define('WP_SITEURL', 'http://localhost/Jordan');
 
 
 
