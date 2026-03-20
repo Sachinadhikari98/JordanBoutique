@@ -10,7 +10,7 @@
                     <?php if ( has_custom_logo() ) : ?>
                         <?php the_custom_logo(); ?>
                     <?php else : ?>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain logo-image transition-transform group-hover:scale-105">
+                        <img src="<?php echo content_url('/uploads/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain logo-image transition-transform group-hover:scale-105">
                     <?php endif; ?>
                 </a>
                 <h2 class="text-xl font-black tracking-tighter uppercase italic">

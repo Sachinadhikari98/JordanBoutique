@@ -54,7 +54,7 @@
                     <?php if (has_custom_logo()) : ?>
                         <?php the_custom_logo(); ?>
                     <?php else : ?>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain logo-image transition-transform group-hover:scale-110">
+                        <img src="<?php echo content_url('/uploads/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain logo-image transition-transform group-hover:scale-110">
                     <?php endif; ?>
                 </a>
             </div>
