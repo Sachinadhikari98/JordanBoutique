@@ -279,6 +279,39 @@ function jordan_customize_register( $wp_customize ) {
         'type'        => 'text',
     ));
 
+    // Instagram
+    $wp_customize->add_setting('footer_social_instagram', array(
+        'default'           => 'https://www.instagram.com',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_social_instagram', array(
+        'label'   => 'Instagram URL',
+        'section' => 'jordan_footer',
+        'type'    => 'url',
+    ));
+
+    // X (Twitter)
+    $wp_customize->add_setting('footer_social_x', array(
+        'default'           => 'https://www.x.com',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_social_x', array(
+        'label'   => 'X (Twitter) URL',
+        'section' => 'jordan_footer',
+        'type'    => 'url',
+    ));
+
+    // Facebook
+    $wp_customize->add_setting('footer_social_facebook', array(
+        'default'           => 'https://www.facebook.com',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_social_facebook', array(
+        'label'   => 'Facebook URL',
+        'section' => 'jordan_footer',
+        'type'    => 'url',
+    ));
+
 
     // --------------------------------------------------------
     // SECTION: About Page
@@ -533,8 +566,8 @@ function jordan_customize_register( $wp_customize ) {
 
     $cats = array(
         'retros' => array('Retros', 'Iconic silhouettes from the golden era.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBNoUWE0l341YpDI_7URp-G3AQeqwV5KyZDADX-1y4_zIEEQpWGOIQiosS1ZE4M_LKTPJjS9GKNSfI6S-uhAteNw1wViSKE-kFukOznOW1VQhj8OE9ULVCQzVdl58b9gIIbSvrl1ZnxW1fFgPhiisa93TS6G4bapOn_BHMHjuRJmQkU15xaKWH1BSwo2p4dZxrqgMOwOKK-QN0NiaUbhbGmR5lFzOIYW38rrNViJK_t95-NnDuBFln7HDTON-Q5yiprwIQw2RCar9s'),
-        'lows'   => array('Lows', 'Modern low profile classics.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleLOWIMAGE'),
-        'mids'   => array('Mids', 'Perfect balance between high and low.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleMIDIMAGE'),
+        'lows'   => array('Lows', 'Modern low profile classics.', content_url('/uploads/2026/03/air-jordan-17-low-university-blue-unc-2024-0.jpg')),
+        'mids'   => array('Mids', 'Perfect balance between high and low.', content_url('/uploads/2026/03/jordan_1_mid_smoke_grey_1773884115052.jpg')),
     );
 
     foreach ( $cats as $slug => $cat ) {

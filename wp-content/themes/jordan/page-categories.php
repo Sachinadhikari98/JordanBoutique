@@ -61,7 +61,7 @@ Shop Now →
 
 <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
 style="background-image: linear-gradient(to top, rgba(18,8,8,0.9), rgba(18,8,8,0)),
-url('<?php echo esc_url( get_theme_mod('categories_lows_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleLOWIMAGE') ); ?>');">
+url('<?php echo esc_url( get_theme_mod('categories_lows_image', content_url('/uploads/2026/03/air-jordan-17-low-university-blue-unc-2024-0.jpg')) ); ?>');">
 </div>
 
 <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition"></div>
@@ -95,7 +95,7 @@ Shop Now →
 
 <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
 style="background-image: linear-gradient(to top, rgba(18,8,8,0.9), rgba(18,8,8,0)),
-url('<?php echo esc_url( get_theme_mod('categories_mids_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCexampleMIDIMAGE') ); ?>');">
+url('<?php echo esc_url( get_theme_mod('categories_mids_image', content_url('/uploads/2026/03/jordan_1_mid_smoke_grey_1773884115052.jpg')) ); ?>');">
 </div>
 
 <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition"></div>
